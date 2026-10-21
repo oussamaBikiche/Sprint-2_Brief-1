@@ -14,7 +14,7 @@
 //  - Comment accéder au prix du 2e cours ? Au 1er créneau du 3e cours ?
 // TODO : affichez `cours` dans la console avec console.log(), puis explorez-le.
 
-
+console.log(cours);
 // ------------------------------------------------------------
 // ÉTAPE 1 : Sélectionner les éléments du DOM
 // ------------------------------------------------------------
@@ -24,7 +24,17 @@
 //  summary-count, summary-total, confirm-button, message
 // TODO : récupérez ces éléments et rangez-les dans des constantes.
 // Question : quelle est la différence entre getElementById et querySelector ?
-
+const coursesContainer=document.getElementById('courses-container');
+const selectedCourseTitle=document.getElementById('selected-course-title');
+const slotsContainer=document.getElementById('slots-container');
+const seatsContainer=document.getElementById('seats-container');
+const summaryCourse=document.getElementById('summary-course');
+const summarySlot=document.getElementById('summary-slot');
+const  summarySeats=document.getElementById('summary-seats');
+const  summaryCount=document.getElementById('summary-count');
+const summaryTotal=document.getElementById('summary-total');
+const confirmButton=document.getElementById('confirm-button');
+const message=document.getElementById('message');
 
 // ------------------------------------------------------------
 // ÉTAPE 2 : État de l'application
