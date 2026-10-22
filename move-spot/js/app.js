@@ -24,17 +24,17 @@ console.log(cours);
 //  summary-count, summary-total, confirm-button, message
 // TODO : récupérez ces éléments et rangez-les dans des constantes.
 // Question : quelle est la différence entre getElementById et querySelector ?
-const coursesContainer=document.getElementById('courses-container');
-const selectedCourseTitle=document.getElementById('selected-course-title');
-const slotsContainer=document.getElementById('slots-container');
-const seatsContainer=document.getElementById('seats-container');
-const summaryCourse=document.getElementById('summary-course');
-const summarySlot=document.getElementById('summary-slot');
-const  summarySeats=document.getElementById('summary-seats');
-const  summaryCount=document.getElementById('summary-count');
-const summaryTotal=document.getElementById('summary-total');
-const confirmButton=document.getElementById('confirm-button');
-const message=document.getElementById('message');
+const coursesContainer = document.getElementById('courses-container');
+const selectedCourseTitle = document.getElementById('selected-course-title');
+const slotsContainer = document.getElementById('slots-container');
+const seatsContainer = document.getElementById('seats-container');
+const summaryCourse = document.getElementById('summary-course');
+const summarySlot = document.getElementById('summary-slot');
+const summarySeats = document.getElementById('summary-seats');
+const summaryCount = document.getElementById('summary-count');
+const summaryTotal = document.getElementById('summary-total');
+const confirmButton = document.getElementById('confirm-button');
+const message = document.getElementById('message');
 
 // ------------------------------------------------------------
 // ÉTAPE 2 : État de l'application
@@ -44,7 +44,9 @@ const message=document.getElementById('message');
 // Question : de quelles informations avez-vous besoin ?
 //  (cours choisi, créneau choisi, emplacements choisis...)
 // Indice : pourquoi un tableau est-il adapté pour les emplacements choisis ?
-
+let coursChoisi = null;
+let creneauChoisi = null;
+let emplacementChoisis = [];
 
 // ------------------------------------------------------------
 // ÉTAPE 3 : Afficher les cours (US01)
@@ -57,7 +59,29 @@ const message=document.getElementById('message');
 //  - Quelle boucle ou méthode de tableau allez-vous utiliser ?
 //  - Comment stocker l'id du cours sur la carte (indice : data-*) ?
 //  - Les template literals (`...${valeur}...`) peuvent-ils vous aider ?
+function AfficherCours(listeCours) {
+  coursesContainer.innerHTML = '';
 
+  cours.forEach(function (c) {
+    coursesContainer.innerHTML += `
+                 <article class="cursor-pointer overflow-hidden rounded-2xl bg-white shadow-sm  transition hover:shadow-md" data-id=${c.id}>
+            <img src=${c.image} alt=${c.nom} />
+            <div class="space-y-1 p-4">
+              <span class="inline-block rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-medium text-teal-700">${c.categorie}</span>
+              <h3 class="text-lg font-semibold text-slate-900">${c.nom}</h3>
+              <p class="text-sm text-slate-600">${c.duree + ",avec" + c.coach}</p>
+              <p class="pt-1 text-base font-bold text-slate-900">${c.prix} € <span class="text-sm font-normal text-slate-500">"par place"</span></p>
+            </div> 
+            </article> `
+
+
+
+
+
+
+  });
+}
+AfficherCours(cours);
 
 // ------------------------------------------------------------
 // ÉTAPE 4 : Sélectionner un cours (US02)
@@ -70,8 +94,20 @@ const message=document.getElementById('message');
 //  - Faut-il un écouteur par carte, ou un seul sur le conteneur ? Quels sont les avantages ?
 //  - Comment retrouver le cours à partir de l'id lu dans la carte ?
 //  - Que faut-il réinitialiser quand on change de cours ?
+const cartes = document.querySelectorAll('.cursor-pointer');
+
+cartes.forEach(function (cursorPointer) {
+  cursorPointer.addEventListener('click', function () {
+
+    cartes.forEach(function (c) {
+      c.classList.remove( 'ring-2' ,'ring-teal-600');
+    });
+    cursorPointer.classList.add('ring-2', 'ring-teal-600');
+
+  });
 
 
+});
 // ------------------------------------------------------------
 // ÉTAPE 5 : Afficher et sélectionner un créneau (US03)
 // ------------------------------------------------------------

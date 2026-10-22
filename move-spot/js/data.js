@@ -52,7 +52,7 @@ const cours = [
       { id: "cross-sam-1130", jour: "Samedi", heure: "11:30", occupes: ["A1", "B2", "C3", "D4", "E5"] }
     ]
   },
-  {
+  { 
     id: "pilates",
     nom: "Pilates Core",
     categorie: "Pilates",
