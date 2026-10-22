@@ -80,6 +80,7 @@ function AfficherCours(listeCours) {
 
 
   });
+
 }
 AfficherCours(cours);
 
@@ -96,18 +97,33 @@ AfficherCours(cours);
 //  - Que faut-il réinitialiser quand on change de cours ?
 const cartes = document.querySelectorAll('.cursor-pointer');
 
-cartes.forEach(function (cursorPointer) {
-  cursorPointer.addEventListener('click', function () {
+cartes.forEach(function (cartClicked) {
+  cartClicked.addEventListener('click', function () {
 
     cartes.forEach(function (c) {
-      c.classList.remove( 'ring-2' ,'ring-teal-600');
+      c.classList.remove('ring-2', 'ring-teal-600');
     });
-    cursorPointer.classList.add('ring-2', 'ring-teal-600');
+    cartClicked.classList.add('ring-2', 'ring-teal-600');
+
+    let courseId = cartClicked.dataset.id
+
+
+    coursChoisi = cours.find(item => item.id == courseId)
+
+
+
+
+    selectedCourseTitle.textContent = coursChoisi.nom
+
+    AfficherCrenaux()
+
+
 
   });
 
 
 });
+
 // ------------------------------------------------------------
 // ÉTAPE 5 : Afficher et sélectionner un créneau (US03)
 // ------------------------------------------------------------
@@ -119,7 +135,29 @@ cartes.forEach(function (cursorPointer) {
 //  - Quand cette fonction doit-elle être appelée ?
 //  - Que se passe-t-il si aucun cours n'est encore sélectionné ?
 
+function AfficherCrenaux() {
+  slotsContainer.innerHTML = ''
 
+  coursChoisi.creneaux.forEach(function (creneaux) {
+    slotsContainer.innerHTML += `<button type="button" class="rounded-xl border px-4 py-2 text-sm font-medium transition border-teal-600 bg-teal-600 text-white" data-id=${creneaux.id}>
+            ${creneaux.jour}<span class="font-normal"> ${creneaux.heure}</span>
+          </button>`
+  })
+
+}
+
+const buttons = document.querySelectorAll('.rounded-xl');
+
+buttons.forEach(function (buttonClicked) {
+  buttonClicked.addEventListener('click', function () {
+    buttons.forEach('click', function (c) {
+      c.classList.remove('ring-2', 'ring-teal-600')
+
+    })
+
+    buttonClicked.classList.add('ring-2', 'ring-teal-600')
+  })
+})
 // ------------------------------------------------------------
 // ÉTAPE 6 : Afficher le plan de la salle (US04)
 // ------------------------------------------------------------
